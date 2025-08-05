@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/seller/order.css'%}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="left">
+      <a href="{% url 'seller_dashboard' %}"><h3>Seller Dashboard</h3></a>
+    </div>
+    <div class="right">
+        <a href="{% url 'log_out' %}" class="login_btn">Logout</a>
+        <img src="{% static 'images/logo/admin.png'%}" alt="Profile" width="40px" height="40px">
+    </div>
+  </div>
+  <div class="sidebar">
+        <ul>
+          <li><a href="{% url 'add_product' %}" class="{% if active_page == 'sell' %}active{% endif %}">Sell Product</a></li>
+          <li><a href="{% url 'view_orders'%}" class="{% if active_page == 'order' %}active{% endif %}">Orders</a></li>
+          <li><a href="{% url 'view_products' %}" class="{% if active_page == 'products' %}active{% endif %}">Products</a></li>
+          <li><a href="#" class="{% if active_page == 'market' %}active{% endif %}">Market Update's</a></li>
+        </ul>
+   
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+      
+{% block content %}
+<h2 style="margin-bottom: 20px;">On Live Selling</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse; text-align: center;">
+    <thead style="background-color: #f2f2f2;">
+        <tr>
+            <th>No</th>
+            <th>Product Image</th>
+            <th>Pro Name</th>
+            <th>Price (₹)</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td style="width: 300px;">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100" height="100" style="object-fit: cover; border-radius: 5px; padding: 8px;" >
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+            <td>{{ product.name }}</td>
+            <td>₹{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td class="action">
+                <a href="{% url 'edit_product' product.id %}" id="edit">Edit</a>
+                <a href="{% url 'delete_product' product.id %}" onclick="return confirm('Are you sure you want to delete this product?');" id="del">Delete</a>
+            </td>
+            </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6">No products available.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endblock %}
+  </div>
+</body>
+</html>

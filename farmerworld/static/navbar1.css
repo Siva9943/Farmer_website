@@ -1,0 +1,274 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  margin-top: 110px;
+}
+
+/* =================== NAVBAR =================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:white;
+  padding: 10px 20px;
+  color: green;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo_section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.nav-search {
+  display: flex;
+  justify-content: center;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  max-width: 300px;
+}
+
+.search-form input {
+  border: none;
+  padding: 8px 9px;
+  font-size: 1rem;
+  flex: 1;
+  outline: none;
+}
+
+.search-form button {
+  background-color: transparent;
+  border: none;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.search-form i {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* =================== NAV RIGHT =================== */
+.nav_right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+form select,
+form input[type="submit"] {
+  padding: 4px 6px;
+  font-size: 14px;
+  min-width: 100px;
+}
+
+.profile_login ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 10px;
+}
+
+.profile_login a {
+  color: white;
+  text-decoration: none;
+}
+
+/* =================== MENU =================== */
+.list_menu {
+  background-color: whitesmoke;
+  color: #000000;
+  padding: 12px 0;
+  position: fixed;
+  top: 70px; /* below navbar */
+  left: 0;
+  width: 100%;
+  z-index: 9998;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  list-style: none;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  gap: 15px;
+  /* padding: 0 20px; */
+}
+
+.menu li a {
+  color: black;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.menu li a:hover {
+  background-color: #1b5e20;
+  border-radius: 4px;
+}
+
+/* =================== THEME SWITCH =================== */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.theme-select {
+  padding: 2px 10px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: whitesmoke;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-select:hover {
+  border-color: #888;
+  background-color: #eee;
+}
+
+/* Theme Modes */
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1024px) {
+  .brand-text {
+    font-size: 1.3rem;
+  }
+
+  .menu li a {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .profile_login ul {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-form {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-text {
+    font-size: 1.1rem;
+  }
+
+  .menu li a {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+
+  form select,
+  form input[type="submit"] {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .logo {
+    height: 35px;
+    width: 35px;
+  }
+
+  .navbar {
+    align-items: stretch;
+  }
+
+  .nav-search {
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .nav_right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .theme-switch-wrapper,
+  #language-form {
+    width: 100%;
+  }
+}
+
+/* active tabs */
+
+.active-tab {
+  color: white;
+  background-color: #2e7d32;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+

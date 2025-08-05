@@ -1,0 +1,218 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" action="{% url 'login_details' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Username or Email</label>
+        <input type="text" name="username" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="social-login">
+      <i class="fab fa-google"></i>
+      <a href="{% provider_login_url 'google' process='login' %}">Continue with Google</a>
+    </div>
+    
+    {% if messages %}
+      {% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  </div>
+</body>
+</html>
+
+<!-- {% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: black;
+      --bg-color:white;
+      --glass-bg: rgba(255, 255, 255, 0.13);
+      --input-bg: white;
+      --border-color: black;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .shape:first-child {
+      background: linear-gradient(#1845ad, #23a2f6);
+      width: 200px;
+      height: 200px;
+      top: -80px;
+      left: -80px;
+    }
+
+    .shape:last-child {
+      background: linear-gradient(to right, #ff512f, #f09819);
+      width: 200px;
+      height: 200px;
+      bottom: -80px;
+      right: -30px;
+    }
+
+    form {
+      width: 400px;
+      padding: 50px 35px;
+      border-radius: 10px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
+      box-shadow: var(--box-shadow);
+      color: var(--primary-color);
+    }
+
+    form h3 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      margin-top: 20px;
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      padding: 0 10px;
+      background: var(--input-bg);
+      border-radius: 4px;
+      font-size: 14px;
+      color: green;
+      margin-top: 8px;
+      border: none;
+    }
+
+    input::placeholder {
+      color: gray;
+    }
+
+    button {
+      margin-top: 40px;
+      width: 50%;
+      padding: 8px 0;
+      background-color: green;
+      color: whitesmoke;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: rgb(5, 156, 5);
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .social {
+      margin-top: 30px;
+    }
+
+    .social div {
+      flex: 1;
+      margin: 0 5px;
+      width: 50%;
+      background-color: rgb(230, 29, 29);
+      text-align: center;
+      padding: 10px;
+      border-radius: 3px;
+      color: #eaf0fb;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .social div:hover {
+      background-color: rgba(255, 255, 255, 0.47);
+    }
+
+    .social i {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form method="POST" action="{% url 'login_details' %}">
+    {% csrf_token %}
+    <h3>Login Here</h3>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="Name" placeholder="Email or Phone" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password"  name="Password" placeholder="Password" required />
+
+    <button type="submit">Log In</button>
+    
+  
+    <div class="social">
+      <div><i class="fab fa-google"></i><a href="{% provider_login_url 'google' process='login' %}">Continue Google</a></div>
+    </div>
+    <p>You have not account <a href="{% url 'signup'%}">Signup</a></p>
+
+    </form>
+  
+</body>
+</html>
+ -->

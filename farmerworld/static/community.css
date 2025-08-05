@@ -1,0 +1,42 @@
+.community-section {
+  padding: 40px 20px;
+  background-color: #e8f5e9;
+}
+
+.post-card {
+  background: #ffffff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.post-img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.comments {
+  margin-top: 15px;
+  background: #f1f8e9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comment {
+  margin-bottom: 5px;
+}
+
+form input[type="text"] {
+  width: 80%;
+  padding: 8px;
+}
+
+form button {
+  padding: 8px 12px;
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

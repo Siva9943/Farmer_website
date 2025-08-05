@@ -1,0 +1,132 @@
+
+{% load static%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  .price-slider {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    scroll-behavior: smooth;
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin: 30px 10px;
+    position: relative;
+  }
+
+  .card {
+    flex: 0 0 auto;
+    width: 220px;
+    background: white;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    padding: 10px;
+  }
+
+  .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .card h4 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+  }
+
+  .price-info {
+    font-size: 14px;
+  }
+
+  .price-change {
+    font-weight: bold;
+    color: green;
+  }
+
+  .price-decrease {
+    color: red;
+  }
+
+  .more-link {
+    position: absolute;
+    right: 20px;
+    top: -15px;
+    background: #0c9;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .more-link:hover {
+    background: #0a7;
+  }
+</style>
+
+<div class="price-slider">
+  <!-- JS will insert cards here -->
+
+  <a class="more-link" href="{% url 'market_price' %}">More <i class="fas fa-arrow-right"></i></a>
+</div>
+
+<script>
+
+  const products = [
+    {
+      name: "Tomato",
+      image: "{% static 'images/veg/tomato.png' %}",
+      yesterday: 20,
+      today: 25
+    },
+    {
+      name: "Potato",
+      image: "{% static 'images/veg/potato.png' %}",
+      yesterday: 30,
+      today: 28
+    },
+    {
+      name: "Onion",
+      image: "{% static 'images/veg/onion.png' %}",
+      yesterday: 22,
+      today: 22
+    },
+    {
+      name: "Carrot",
+      image: "{% static 'images/veg/carrot.png' %}",
+      yesterday: 40,
+      today: 45
+    },
+    {
+      name: "Chili",
+      image: "{% static 'images/veg/chili.png' %}",
+      yesterday: 50,
+      today: 42
+    }
+  ];
+
+  const slider = document.querySelector(".price-slider");
+
+  products.forEach(p => {
+    const diff = p.today - p.yesterday;
+    const changeIcon = diff > 0
+      ? `<span class="price-change">▲ ${diff}</span>`
+      : diff < 0
+      ? `<span class="price-decrease">▼ ${Math.abs(diff)}</span>`
+      : `<span style="color: gray;">—</span>`;
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `
+      <img src="${p.image}" alt="${p.name}">
+      <h4>${p.name}</h4>
+      <div class="price-info">Yesterday: ₹${p.yesterday}</div>
+      <div class="price-info">Today: ₹${p.today}</div>
+      <div>${changeIcon}</div>
+    `;
+    slider.insertBefore(card, slider.querySelector(".more-link"));
+  });
+</script>

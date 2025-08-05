@@ -1,0 +1,126 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9fb;
+}
+  .form-container {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-container h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  input[type="file"] {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .table thead th {
+    background-color: #343a40;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .table tbody tr:hover {
+    background-color: #e2f0d9;
+    transition: background 0.3s ease;
+  }
+
+  .container.py-4 {
+    padding: 0 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  @media (max-width: 768px) {
+    .form-container, .container.py-4 {
+      padding: 20px;
+    }
+
+    .table thead {
+      display: none;
+    }
+
+    .table tbody td {
+      display: block;
+      width: 100%;
+      text-align: right;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+
+    .table tbody td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: 50%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .table tbody tr {
+      display: block;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }

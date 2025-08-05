@@ -1,0 +1,174 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="refresh" content="5; url={% url 'login_details' %}"> -->
+  <title>Farmer World</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+    {% include './navbar/navbar1.html' %}
+  <div class="grid-container" data-aos="fade-up">
+      <section class="hero">
+        {% include 'slider/image_slider.html'%}
+      </section>
+
+      <section class="features grid" data-aos="fade-up">
+          <div class="feature-box">
+            <h3><a href="{% url 'market_price' %}">Live Market Prices</a></h3>
+            <p>Stay updated with real-time prices of your crops.</p></div>
+          <div class="feature-box">
+            <h3><a href="{% url 'buy_sell'%}">Buy & Sell Products</a></h3>
+            <p>Connect with other farmers to buy or sell directly.</p></div>
+          <div class="feature-box">
+            <h3><a href="{% url 'crop'%}">Crop Information</a></h3>
+            <p>Watch and learn modern techniques and tips.</p></div>
+      </section>  
+  </div>
+  <!-- about contant -->
+  <div class="about_container">
+    <div class="left" data-aos="fade-right">
+      <h3>About Us :</h3>
+      <div>
+          <p style="text-align: center;"><strong>“Empowering Farmers Through Knowledge, Connection & Technology”</strong></p>
+          <p class="about_para">Welcome to Farmer World – your digital companion for smarter and sustainable farming. We bridge the gap between traditional agriculture and modern technology by providing real-time market updates, expert crop guidance, community forums, and access to government schemes.</p>
+      </div>
+      <div class="mission"><strong style="margin: 15px 10px; font-size: 24px;">Our Mission: </strong>
+          <ul>
+            <li>Empower farmers with up-to-date market prices.</li>
+            <li>Provide reliable crop and weather information.</li>
+            <li>Encourage peer-to-peer buying and selling</li>
+            <li>Promote smart farming through educational content.</li>
+          </ul>
+      </div>
+    </div>
+    <div class="right">
+      <section class="weather-box" data-aos="fade-right">
+        <h3>Weather in Your Area</h3><br>
+        <iframe id="weather" height="300px" width="100px" frameborder="0"></iframe>
+      </section>
+    </div>
+  </div>
+   <!-- market-section -->
+    <div class="market_box" data-aos="fade-up">
+        <h3>Market Update's</h3> <div class="update"><marquee behavior="slider" direction="left" scrollamount="7">📈 Market prices are updated every 24 hours. Stay tuned for the latest crop rates and trends. Empower your farming decisions with real-time data!
+            </marquee></div>
+        <p>Stay informed with real-time crop price updates tailored to your region.
+            Compare today's rates with yesterday's to track market trends.
+            Visual indicators help you spot rising or falling prices instantly.
+            Make smarter selling and buying decisions with accurate data at your fingertips.</p>
+      
+            {% include 'slider/market.html'%}
+    </div>
+    
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-container" data-aos="fade-right">
+        <!-- Social Media -->
+        <div class="footer-section about social">
+            <h3 style="margin-bottom: 10px;">Follow Us</h3>
+                <p><a href="https://www.facebook.com" target="_self"><i class="fab fa-facebook-f icon" ></i>&nbsp;&nbsp;Facebook</a></p>
+                <p><a href="https://wa.me/919432688537" target="_self"><i class="fab fa-whatsapp  icon"></i>&nbsp;&nbsp;+91 9432688537</a></p>
+                <p><a href="https://www.youtube.com/@sivafun60sec" target="_self"><i class="fab fa-youtube icon"></i>&nbsp;&nbsp;YouTube Channel</a></p>
+        </div>
+        <!-- Contact Info -->
+        <div class="footer-section about">
+            <h3 style="margin-bottom: 10px;">Contact Us</h3>
+              <p><a href="mailto:support@farmerworld.com" style="color: inherit; text-decoration: none;">Email: support@farmerworld.com</a></p>
+              <p><a href="tel:+919432688537" style="color: inherit; text-decoration: none;">Phone: +91 9432688537</a></p>
+              <p>Location: Chennai, Tamil Nadu</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section quick-links">
+            <h3>Quick Links</h3>
+              <ul style="list-style: none; padding: 0;">
+                  <li><a href="{% url 'index' %}">Home</a></li>
+                  <li><a href="{% url 'crop' %}">Crop Guide</a></li>
+                  <li><a href="{% url 'market_price' %}">Market Price</a></li>
+                  <li><a href="{% url 'buy_sell' %}">Buy & Sell</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+              </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-section newsletter">
+            <h3>Newsletter</h3>
+            <form action="#">
+              <input type="email" placeholder="Your email">
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+        </div>
+      </div>
+
+    <!-- Copyright -->
+    <div id="copy">© 2025 Farmer World. All rights reserved.</div>
+</footer>
+
+  
+
+  <!-- Cookie Consent -->
+  <div id="cookie-consent">
+    <span>This site uses cookies to improve your experience.</span>
+    <button onclick="setCookie('site_cookie_consent', 'accepted', 365)" class="btn btn-success btn-sm">Accept</button>
+    <button onclick="setCookie('site_cookie_consent', 'ignored', 365)" class="btn btn-secondary btn-sm">Ignore</button>
+  </div>
+
+
+   
+
+<script>
+   
+    // Weather Script
+    const weatherFrame = document.getElementById("weather");
+    function updateWeatherFrame(lat, lon) {
+      const overlay = 'rain';
+      const url = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&detailLat=${lat}&detailLon=${lon}&zoom=6&level=surface&overlay=${overlay}&menu=true&message=false&marker=true`;
+      weatherFrame.src = url;
+    } 
+    function loadWeatherWithFallback() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => updateWeatherFrame(pos.coords.latitude, pos.coords.longitude),
+          () => updateWeatherFrame(13.0827, 80.2707),
+          { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+        );
+      } else {
+        updateWeatherFrame(13.0827, 80.2707);
+      }
+    }
+    loadWeatherWithFallback();
+
+
+    // Cookie Script
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 86400000).toUTCString();
+      document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+      document.getElementById('cookie-consent').style.display = 'none';
+    }
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    if (getCookie('site_cookie_consent')) {
+      document.getElementById('cookie-consent').style.display = 'none';
+    }
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000, // animation duration in ms
+    once: true      // only animate once per scroll
+  });
+</script>
+
+</body>
+</html>

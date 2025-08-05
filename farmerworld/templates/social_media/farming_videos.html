@@ -1,0 +1,27 @@
+{% include 'navbar/navbar1.html' %}
+{% load static %}
+{% block title %}Farming Videos | Farmer Guide{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'youtube.css'%}">
+<section class="farming-videos-section">
+  <div class="container">
+    <h1>Farming Videos</h1>
+    <p>Learn new farming techniques and tips through curated video content.</p>
+
+    <div class="video-grid">
+      {% for video in videos %}
+      <div class="video-card">
+        <a href="{{ video.video_url }}" target="_blank">
+          <img src="{{ video.thumbnail.url }}" alt="{{ video.caption }}">
+        </a>
+        <h3>{{ video.caption }}</h3>
+        <p>Published on {{ video.published_on|date:"M d, Y" }}</p>
+      </div>
+      {% empty %}
+      <p>No videos available at the moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

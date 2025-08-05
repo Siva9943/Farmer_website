@@ -1,0 +1,49 @@
+{% include 'navbar/navbar1.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Farmer Guide{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'base.css'%}">
+
+<section class="contact-section">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>We're here to help! Fill out the form or reach us directly.</p>
+
+    <div class="contact-form">
+      <form method="POST" action="{% url 'feedback' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send Message</button>
+      </form>
+
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <div class="contact-details">
+      <h3>Contact Info</h3>
+      <p><strong>Email:</strong> support@farmerguide.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Address:</strong> Farmer Guide HQ, Chennai, Tamil Nadu, India</p>
+    </div>
+
+    <div class="map">
+      <iframe
+        src="https://www.google.com/maps?q=chennai&output=embed"
+        width="100%"
+        height="300"
+        frameborder="0"
+        style="border:0"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+{% endblock %}

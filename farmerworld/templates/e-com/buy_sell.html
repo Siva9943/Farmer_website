@@ -1,0 +1,29 @@
+{% include 'navbar/navbar1.html' %}
+{%load static%}
+{% block title %}Buy & Sell | Farmer Guide{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{%static 'buy_sell.css'%}">
+<section class="buy-sell-section">
+  <div class="container">
+    <h1>Buy & Sell</h1>
+    <p>Explore products listed by fellow farmers. Contact sellers directly to buy items.</p>
+
+    <div class="product-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.description|truncatewords:15 }}</p>
+        <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+        <p><strong>Price:</strong> ₹{{ product.price }}</p>
+        <p><strong>Seller Location:</strong> {{ product.seller.location }}</p>
+        <p><strong>Posted:</strong> {{ product.posted_on|date:"M d, Y" }}</p>
+      </div>
+      {% empty %}
+      <p>No products available right now.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

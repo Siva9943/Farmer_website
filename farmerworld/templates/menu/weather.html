@@ -1,0 +1,59 @@
+{% include 'navbar/navbar1.html' %}
+
+{% block title %}Weather Updates | Farmer Guide{% endblock %}
+
+{% block content %}
+<style>
+    .weather-section {
+  background-color: #e1f5fe;
+  padding: 40px 20px;
+}
+
+.weather-map-container {
+  margin-top: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+</style>
+<section class="weather-section">
+  <div class="container">
+    <h1>Live Weather Updates</h1>
+    <p>Track live weather using Windy maps. Your location will be used if available.</p>
+
+    <div class="weather-map-container">
+      <iframe
+        id="weather-frame"
+        width="100%"
+        height="500"
+        frameborder="0"
+        allowfullscreen
+        src="https://embed.windy.com/embed2.html?lat=13.0827&lon=80.2707&zoom=6&level=surface&overlay=rain&menu=true&message=false&marker=true"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<script>
+  const weatherFrame = document.getElementById("weather-frame");
+
+  function updateWeatherFrame(lat, lon) {
+    const url = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&zoom=6&level=surface&overlay=rain&menu=true&message=false&marker=true`;
+    weatherFrame.src = url;
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude.toFixed(4);
+        const lon = position.coords.longitude.toFixed(4);
+        updateWeatherFrame(lat, lon);
+      },
+      (error) => {
+        console.warn("User denied geolocation or error occurred. Defaulting to Chennai.");
+      }
+    );
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load static%}
+{% load i18n %}
+
+<!-- head -->
+<head>
+  <link rel="icon" type="image/x-icon" href="./aaa_logo.png" />
+  <link rel="stylesheet" href="{% static 'css/navbar1.css'%}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- navbar section -->
+  <nav class="navbar">
+    <!-- navbar left  -->
+    <div class="nav-left">
+        <div class="logo_section">
+          <img src="{% static 'images/logo/logo1.png' %}" alt="Logo" class="logo" />
+          <span class="brand-text">Farmer World</span> </div>
+        <div class="nav-search">
+            <form action="{% url 'search' %}" method="get" class="search-form">
+              <input type="text" name="q" placeholder="Search..." required>
+              <button type="submit"><i class="fas fa-search"></i></button></form>
+        </div>
+    </div> 
+    <!-- navbar right -->
+    <div class="nav_right">
+      <div>
+        <form id="language-form" action="{% url 'set_language' %}" method="post">
+          {% csrf_token %}
+            <select id="language-select" name="language" onchange="document.getElementById('language-form').submit();">
+              <option value="#">Language</option>
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+              <option value="ta">Tamil</option>
+            </select>
+        </form>
+      </div>
+      <div class="profile" id="profileMenu">
+        <p>{{name}}</p>
+          <img src="{{picture}}" alt="Profile" id="profileImg" width="40" height="40">
+          <div class="dropdown" id="dropdownMenu">
+              <a href="{% url 'log_out' %}"  class="login_btn ">Logout</a>
+          </div>
+      </div>
+    </div> 
+  </nav>
+
+  <div class="list_menu">
+    <ul class="menu">
+      <li><a href="{% url 'index' %}" class="{% if active_page == 'index' %}active{% endif %}">{% trans 'Home'%}</a></li>
+      <li><a href="{% url 'crop' %}" class="{% if active_page == 'crop' %}active{% endif %}">{% trans 'Crop Guide'%}</a></li>
+      <li><a href="{% url 'market_price' %}" class="{% if active_page == 'market_price' %}active{% endif %}">{% trans 'Market Price'%}</a></li>
+      <li><a href="{% url 'buy_sell' %}" class="{% if active_page == 'buy_sell' %}active{% endif %}">{% trans 'Buy & Sell'%}</a></li>
+      <li><a href="{% url 'farming_videos' %}" class="{% if active_page == 'farming_videos' %}active{% endif %}">{% trans 'Farming Videos'%}</a></li>
+      <li><a href="{% url 'govt' %}" class="{% if active_page == 'govt' %}active{% endif %}">{% trans 'Government Schemas'%}</a></li>
+      <li><a href="{% url 'weather' %}" class="{% if active_page == 'weather' %}active{% endif %}">{% trans 'Weather'%}</a></li>
+      <li><a href="{% url 'news' %}" class="{% if active_page == 'news' %}active{% endif %}">{% trans 'News'%}</a></li>
+      <li><a href="{% url 'command' %}" class="{% if active_page == 'command' %}active{% endif %}">{% trans 'Community Commands'%}</a></li>
+    </ul>
+  </div>
+  <script src="{% static 'js/main.js'%}"></script>
+</body>
+
+

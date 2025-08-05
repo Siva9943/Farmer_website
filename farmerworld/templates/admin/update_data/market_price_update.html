@@ -1,0 +1,52 @@
+{% extends 'admin/admin_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin/admin_market.css'%}">
+<div class="form-container" style="padding: 20px;">
+  <h2>Upload Market Prices (CSV)</h2>
+
+  <form method="POST" enctype="multipart/form-data" action="{% url 'vegitable_data' %}">
+    {% csrf_token %}
+    
+    <label for="csv_file">Choose CSV File:</label>
+    <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+    
+    <br><br>
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><strong>Note:</strong> CSV format should be:<br>
+  <code>name,min_rate,max_rate</code></p>
+</div>
+
+<hr>
+
+<h3 style="color:green; text-align: center; padding: 20px;">Market Prices</h3><br/>
+<div class="container py-4">
+  
+  <table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>Vegetable</th>
+        <th>Min Rate (₹)</th>
+        <th>Max Rate (₹)</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for price in prices %}
+      <tr>
+        <td>{{ price.name }}</td>
+        <td>{{ price.min_rate }}</td>
+        <td>{{ price.max_rate }}</td>
+        <td>{{ price.date_added }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">No data available.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% include 'navbar/navbar1.html' %}
+{% load static %}
+{% block title %}Government Schemes | Farmer Guide{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'govt.css'%}">
+<section class="scheme-section">
+  <div class="container">
+    <h1>Government Schemes</h1>
+    <p>Discover latest agricultural schemes and benefits provided by the government.</p>
+
+    <div class="scheme-list">
+      {% for scheme in schemes %}
+      <div class="scheme-card">
+        <h3>{{ scheme.title }}</h3>
+        <p>{{ scheme.description|truncatewords:30 }}</p>
+        <p><strong>Published on:</strong> {{ scheme.published_on|date:"M d, Y" }}</p>
+        {% if scheme.link %}
+        <a href="{{ scheme.link }}" class="read-more" target="_blank">Read More</a>
+        {% endif %}
+      </div>
+      {% empty %}
+      <p>No schemes available right now.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/seller/dash.css'%}">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="left">
+      <a href="{% url 'seller_dashboard' %}"><h3>Seller Dashboard</h3></a>
+    </div>
+    <div class="right">
+        <a href="{% url 'log_out' %}" class="login_btn">Logout</a>
+        <img src="{% static 'images/logo/admin.png'%}" alt="Profile" width="40px" height="40px">
+    </div>
+  </div>
+  <div class="sidebar">
+        <ul>
+          <li><a href="{% url 'add_product' %}" class="{% if active_page == 'sell' %}active{% endif %}">Sell Product</a></li>
+          <li><a href="{% url 'view_orders'%}" class="{% if active_page == 'order' %}active{% endif %}" >Orders</a></li>
+          <li><a href="{% url 'view_products' %}" class="{% if active_page == 'products' %}active{% endif %}" >Products</a></li>
+          <li><a href="#" class="{% if active_page == 'market' %}active{% endif %}">Market Update's</a></li>
+        </ul>
+   
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Metrics -->
+    <div class="cards">
+      <div class="card">
+        <h3>Total Selles</h3>
+        <p>647</p>
+      </div>
+      <div class="card">
+        <h3>Today Orders</h3>
+        <p>32</p>
+      </div>
+      <div class="card">
+        <h3>Pending Delivery</h3>
+        <p>3</p>
+      </div>
+      <div class="card">
+        <h3>Customers</h3>
+        <p>10</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

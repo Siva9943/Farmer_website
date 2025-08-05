@@ -1,0 +1,61 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Dashboard</title>
+   <link rel="stylesheet" href="{% static 'css/seller/dash.css'%}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="left">
+      <a href="{% url 'seller_dashboard' %}"><h3>Seller Dashboard</h3></a>
+    </div>
+    <div class="right">
+        <a href="{% url 'log_out' %}" class="login_btn">Logout</a>
+        <img src="{% static 'images/logo/admin.png'%}" alt="Profile" width="40px" height="40px">
+    </div>
+  </div>
+  <div class="sidebar">
+        <ul>
+          <li><a href="{% url 'add_product' %}" class="{% if active_page == 'sell' %}active{% endif %}">Sell Product</a></li>
+          <li><a href="{% url 'view_orders'%}" class="{% if active_page == 'order' %}active{% endif %}" >Orders</a></li>
+          <li><a href="{% url 'view_products' %}" class="{% if active_page == 'products' %}active{% endif %}" >Products</a></li>
+          <li><a href="#" class="{% if active_page == 'market' %}active{% endif %}">Market Update's</a></li>
+        </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <h2>Sell Your Product</h2>
+
+        <label for="id_name">Product Name</label>
+        <input type="text" name="name" id="id_name" required>
+
+        <label for="id_price">Price (₹)</label>
+        <input type="number" step="0.01" name="price" id="id_price" required>
+
+        <label for="id_quantity">Quantity</label>
+        <input type="number" name="quantity" id="id_quantity" required>
+
+        <label for="id_image">Product Image</label>
+        <input type="file" name="image" id="id_image">
+
+        <label for="id_description">Description</label>
+        <textarea name="description" id="id_description" rows="3"></textarea>
+
+        <button type="submit">Sell Product</button>
+      </form>
+  </div>
+</body>
+</html>
+
+
+

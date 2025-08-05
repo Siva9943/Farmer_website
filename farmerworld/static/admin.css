@@ -1,0 +1,21 @@
+
+.admin-dashboard {
+    padding: 2rem;
+    background-color:#2c3e50;
+    
+}
+.admin-sections ul {
+    list-style-type: none;
+    padding: 0;
+}
+.admin-sections li {
+    margin-bottom: 10px;
+}
+.admin-sections a {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    text-decoration: none;
+}
+.admin-sections a:hover {
+    text-decoration: underline;
+}

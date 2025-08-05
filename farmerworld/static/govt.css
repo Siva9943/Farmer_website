@@ -1,0 +1,29 @@
+.scheme-section {
+  padding: 40px 20px;
+  background-color: #fff3e0;
+}
+
+.scheme-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.scheme-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.scheme-card h3 {
+  color: #e65100;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #bf360c;
+  text-decoration: underline;
+}

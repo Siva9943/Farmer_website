@@ -1,0 +1,206 @@
+/* Reset and basic setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInBody 1s ease-in-out;
+    overflow: hidden;
+}
+
+@keyframes fadeInBody {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container {
+    width: 350px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 1.2s ease;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.login-container h2 {
+    color: green;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+label {
+    color: black;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    font-size: 17px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    font-size: 17px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+}
+
+input::placeholder {
+    color: gray;
+}
+
+button[type="submit"] {
+    background-color: #000;
+    color: white;
+    width: 80%;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: green;
+    color:black
+}
+button:active{
+     transform: scale(0.95);
+}
+
+/* Social login */
+.social-login a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+.social-login img {
+    width: 30px;
+    height: 20px;
+    transition: color 0.3s;
+}
+.social-login a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.social-login a {
+    color: black;
+}
+.social-login a:hover {
+    background-color: green;
+    color: white;
+}
+.user{
+    width:100%;
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+
+}
+
+.user i {
+    position: absolute;
+    left: 10px;
+    font-size: 22px;
+    color: green;
+}
+.user input {
+    width: 100%;
+    padding: 10px 50px;
+    border-radius: 10px;
+    border:1px solid black;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color:black;
+    font-size: 17px;
+    transition: background-color 0.3s ease;
+}
+.user input:hover{
+    box-shadow: inset 0 0 5px green;
+}
+.confirm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+#exception_msg{
+    text-align: left;
+}
+.confirm div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.confirm p {
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.confirm p:hover {
+  color: green;
+}
+p>a:hover {
+  color: green;
+  text-decoration: underline;
+
+}

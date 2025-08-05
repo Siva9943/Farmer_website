@@ -1,0 +1,121 @@
+{% load static %}
+{% block content %}
+{% include 'navbar/navbar1.html' %}
+<link rel="stylesheet" href="{% static 'base.css' %}">
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .left-panel {
+    width: 320px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .crop-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding: 10px;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .crop-item:hover,
+  .crop-item.active {
+    background-color: #f3f4f6;
+  }
+
+  .crop-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .crop-item-name {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .right-panel {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .right-panel img {
+    width:170px;
+    height: 170px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  .right-panel h2 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 10px;
+  }
+
+  .right-panel p {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .right-panel p strong {
+    color: #374151;
+  }
+  .details{
+    text-align: left;
+    padding:20px;
+  }
+</style>
+
+<div class="main-container">
+  <div class="left-panel">
+    {% for c in crops %}
+      <a href="?id={{ c.id }}" class="crop-item {% if crop.id == c.id %}active{% endif %}">
+        <img src="{{ c.image.url }}" alt="{{ c.name }}">
+        <span class="crop-item-name">{{ c.name }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="right-panel">
+    <center>
+        {% if crop %}
+      <img src="{{ crop.image.url }}" alt="{{ crop.name }}" >
+    </center>
+      <div class="details">
+          <h2>{{ crop.name }}</h2>
+      <p><strong>Soil Type:</strong> {{ crop.soil_type }}</p>
+      <p><strong>Season:</strong> {{ crop.season }}</p>
+      <p><strong>Description:</strong> {{ crop.description }}</p>
+    {% else %}
+      <p>Select a crop from the left to view its details.</p>
+    {% endif %}
+      </div>
+      
+   
+    
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seller login</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="login-container">
+    <h2>Seller</h2>
+    <form method="POST" action="{% url 'login_info' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Username/Email</label>
+        <div class="user"> 
+          <i class="fa-solid fa-circle-user"></i>
+          <input type="text" name="username" placeholder="Enter Username/email" required>
+        </div>
+       
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="user"> 
+          <i class="fa-solid fa-key"></i>
+          <input type="password" name="password" placeholder="Enter the Password" required>
+        </div>
+        </div>
+      
+        <p id="exception_msg"></p>
+
+        <div class="confirm">
+          <div>
+            <input type="checkbox" name="active" id="rem" required> 
+            <p for="rem">Remember me</p>
+          </div>
+          <p>Forgot password</p>
+        </div><br/>
+      <center>
+          <button type="submit">Login</button>
+      </center>
+      
+    </form> <br/>
+    <p>Or Sign Up using</p>
+
+    <p>Don't have an account &nbsp; <a href="{% url 'signup' %}">Signup</a></p>
+  
+
+    
+  </div>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get('error');
+
+  if (error === 'invalid') {
+    showError("Invalid Username or Password.");
+  } else if (error === 'empty') {
+    showError("Username/Email and Password are required.");
+  }
+
+  function showError(message) {
+    const errorElement = document.getElementById("exception_msg");
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.style.color = "red";
+    }
+  }
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% include 'navbar/navbar1.html' %}
+{% load static %}
+
+{% block title %}Market Price | Farmer Guide{% endblock %}
+{% block content %}
+
+<div class="container py-4">
+  <h1>Market Prices</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Vegetable</th>
+        <th>Min Rate (₹)</th>
+        <th>Max Rate (₹)</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for price in prices %}
+      <tr>
+        <td>{{ price.name }}</td>
+        <td>{{ price.min_rate }}</td>
+        <td>{{ price.max_rate }}</td>
+        <td>{{ price.date_added }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">No data available.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

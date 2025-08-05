@@ -1,0 +1,45 @@
+{% include 'navbar/navbar1.html' %}
+{% load static %}
+{% block title %}Community Forum | Farmer Guide{% endblock %}
+
+{% block content %}">">
+<link rel="stylesheet" href="{% static 'community.css'%}">
+<section class="community-section">
+  <div class="container">
+    <h1>Community Forum</h1>
+    <p>Discuss, ask questions, and help each other grow better!</p>
+
+    {% for post in posts %}
+    <div class="post-card">
+      <h3>{{ post.user.username }}</h3>
+      <p>{{ post.content }}</p>
+      {% if post.image %}
+      <img src="{{ post.image.url }}" alt="Post Image" class="post-img">
+      {% endif %}
+      <small>Posted on {{ post.created_at|date:"M d, Y H:i" }}</small>
+
+      <div class="comments">
+        <h4>Comments:</h4>
+        {% for comment in post.comments.all %}
+        <div class="comment">
+          <strong>{{ comment.user.username }}</strong>: {{ comment.comment }}
+        </div>
+        {% empty %}
+        <p>No comments yet.</p>
+        {% endfor %}
+      </div>
+
+      {% if user.is_authenticated %}
+      <form action="{% url 'add_comment' post.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="comment" placeholder="Write a comment..." required>
+        <button type="submit">Comment</button>
+      </form>
+      {% else %}
+      <p><a href="{% url 'login' %}">Log in</a> to comment.</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

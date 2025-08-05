@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .overall_container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav {
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+       background-color: whitesmoke;
+      color: black;
+  
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .right img {
+      border-radius: 50%;
+      border: 2px solid green;
+    }
+
+    .login_btn {
+      color: white;
+      text-decoration: none;
+      background-color: black;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 500px;
+    }
+    .login_btn:hover{
+      background-color: green;
+
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 60px);
+    }
+
+    .title {
+      width: 220px;
+      background-color: whitesmoke;
+      padding: 15px;
+      border-top: none;
+      color:green;
+    }
+
+    .title ul {
+      list-style: none;
+    }
+
+    .title ul li {
+      margin-bottom: 12px;
+    }
+
+    .title ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 12px;
+      display: block;
+      border-left: 3px solid transparent;
+    }
+
+    .title ul li a:hover {
+      background-color: #e9ecef;
+      border-left: 3px solid #007bff;
+      color: #007bff;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    img{
+      padding: 5px;
+    }
+    nav ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 6px;
+}
+
+nav ul li a:hover {
+  background-color: #e0f5e9;
+  color: #28a745;
+}
+
+.title ul li a.active {
+  background-color: #28a745;
+  color: white;
+  font-weight: 600;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="overall_container">
+    <nav class="nav">
+      <div class="left">
+        <h3>Admin</h3>
+        <p>Hii {{user}} </p>
+      </div>
+      <div class="right">
+        <a href="{% url 'log_out' %}" class="login_btn">Logout</a> 
+        <img src="{% static 'images/logo/admin.png'%}" alt="Profile" width="40px" height="40px">
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="title">
+        <ul>
+          <li><a href="{% url 'crop_info' %}" class="{% if active_page == 'crop_ac' %}active{% endif %}">Manage Crop</a></li>
+          <li><a href="{% url 'vegitable_data' %}" class="{% if active_page == 'mark' %}active{% endif %}">Market Info</a></li>
+          <li><a href="#">E-commerce</a></li>
+          <li><a href="#">Video Management</a></li>
+          <li><a href="#">Add Govt Schemes</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="" class="{% if active_page == 'users' %}active{% endif %}">Users</a></li>
+          <li><a href="" class="{% if active_page == 'sellers' %}active{% endif %}">Sellers</a></li>
+          <li><a href="" class="{% if active_page == 'reports' %}active{% endif %}">Reports</a></li>
+        </ul>
+      </div>
+
+      <div class="content">
+        {% block content %} 
+        <h2>Manage Crop Section</h2>
+        <p>This section allows admin to manage crops.</p>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

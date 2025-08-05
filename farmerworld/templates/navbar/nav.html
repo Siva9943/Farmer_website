@@ -1,0 +1,44 @@
+{% load static %}
+<head>
+  <link rel="icon" type="image/x-icon" href="./aaa_logo.png" />
+  <link rel="stylesheet" href="{% static 'css/navbar.css'%}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- navbar section -->
+  <nav class="navbar">
+    <!-- navbar left  -->
+    <div class="nav-left">
+        <div class="logo_section">
+          <img src="{% static 'images/logo/logo1.png' %}" alt="Logo" class="logo" />
+          <span class="brand-text">Farmer World</span> </div>
+        <div class="nav-search">
+            <form action="{% url 'search' %}" method="get" class="search-form">
+              <input type="text" name="q" placeholder="Search..." required>
+              <button type="submit"><i class="fas fa-search"></i></button></form>
+        </div>
+    </div> 
+    <!-- navbar right -->
+    <div class="nav_right">
+      <div>
+        <form id="language-form" action="{% url 'set_language' %}" method="post">
+          {% csrf_token %}
+            <select id="language-select" name="language" onchange="document.getElementById('language-form').submit();">
+              <option value="#">Language</option>
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+              <option value="ta">Tamil</option>
+            </select>
+        </form>
+      </div>
+      <div class="profile" id="profileMenu">
+        <p>{{name}}</p>
+          <img src="{{picture}}" alt="Profile" id="profileImg" width="40" height="40">
+          <div class="dropdown" id="dropdownMenu">
+              <a href="#">Settings</a>
+              <a href="#">Profile Update</a>
+              <a href="{% url 'log_out' %}"  class="login_btn ">Logout</a>
+          </div>
+      </div>
+    </div> 
+  </nav>

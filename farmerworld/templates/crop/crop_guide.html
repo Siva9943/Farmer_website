@@ -1,0 +1,30 @@
+{% include './navbar/navbar1.html' %}
+{% load static %}
+{% block title %}Crop Planning Guide{% endblock %}
+
+  <div class="sidebar">
+        <div class="crop-list">
+        <ul>
+          {% for c in crops %}
+          <li>
+            <a href="{% url 'crop_detail' c.id %}">{{ c.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+   
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+        {% if crop %}
+        <h2>{{ crop.name }}</h2>
+        <img src="{{ crop.images.url }}" alt="{{ crop.name }}">
+        <p><strong>Soil Type:</strong> {{ crop.soil_type }}</p>
+        <p><strong>Season:</strong> {{ crop.season }}</p>
+        <p><strong>Description:</strong> {{ crop.description }}</p>
+      {% else %}
+        <p>Select a crop to view its details.</p>
+      {% endif %}
+
+  </div>
